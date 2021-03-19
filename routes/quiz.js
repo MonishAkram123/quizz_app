@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const uuid = require('uuid-random')
 
+const calculateScoreForTest = require('../helpers.js').calculateScoreForTest
 const questionsDao = require('../dao/questions.js')
 const appConfig = require('../config.json')
 const currentQuizes = {}
@@ -34,8 +35,9 @@ router.get("/:subject", (req, res) => {
 })
 
 router.post("/submit", (req, res) => {
-	console.log(req.body)
-	res.render("score_page")
+	score_obj = calculateScoreForTest(currentQuizes, req.body)
+	score = `${score_obj.positive}/${score_obj.total} Accuracy: ${score_obj.accuracy}%`
+	res.render("score_page", {score})
 })
 
 module.exports = router

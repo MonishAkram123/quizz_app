@@ -35,4 +35,17 @@ var isUnAuthenticated = (req, res, next) => {
 	}
 }
 
-module.exports = {isAuthenticated, isUnAuthenticated, getNewConnetion, closeConnection}
+var calculateScoreForTest = (tests, response) => {
+	test = tests[response.test_id]
+	totalQuestions = test.questions.length
+	correctAnswers = 0
+	test.questions.map(question => {
+		console.log("Comparing: ", response[question.id], question)
+		if(response[question.id] === question.answer)
+			correctAnswers++
+	})
+
+	return {"positive": correctAnswers, "total": totalQuestions, "accuracy": (100 * correctAnswers/totalQuestions).toFixed(2) }
+}
+
+module.exports = {isAuthenticated, isUnAuthenticated, getNewConnetion, closeConnection, calculateScoreForTest}

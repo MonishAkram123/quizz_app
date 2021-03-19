@@ -18,7 +18,7 @@ var getNQuestions = (subject, N, cb) => {
 						"id": results[i].id,
 						"subject": results[i].subject,
 						"question": results[i].question_title,
-						"answer": results[i].title,
+						"answer": results[i].answer,
 						"options": JSON.parse(buffer)
 					}
 
