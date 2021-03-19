@@ -4,6 +4,7 @@ const hbs = require('hbs');
 
 var app = express()
 
+app.use(express.static(__dirname +'/public/'));
 app.set('view engine', 'hbs')
 
 // Load the welcome page where users can login and register
