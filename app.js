@@ -4,7 +4,7 @@ const express = require('express')
 const hbs = require('hbs');
 const session = require('express-session')
 
-const user_dao = require('./dao/user.js')
+const userDao = require('./dao/user.js')
 const isAuthenticated = require('./helpers.js').isAuthenticated
 const isUnAuthenticated = require('./helpers.js').isUnAuthenticated
 const quizRouter = require('./routes/quiz.js')
@@ -33,7 +33,7 @@ app.get("/login", isUnAuthenticated, (req, res) => {res.render('login_page')})
 // Post call to log user in
 app.post('/login', isUnAuthenticated, (req, res) => {
 	// TODO: remove with actual code that can log a user in and set cookie with user data
-	let user = user_dao.findOne(req.body.username, req.body.password, (err, result) => {
+	let user = userDao.findOne(req.body.username, req.body.password, (err, result) => {
 		if(err) {
 			console.log(`Error while login: ${err}`)
 			res.redirect("/login")
@@ -49,7 +49,7 @@ app.post('/login', isUnAuthenticated, (req, res) => {
 app.get("/register", isUnAuthenticated, (req, res) => {res.render('register_page')})
 
 app.post("/register", isUnAuthenticated, (req, res) => {
-	user_dao.createNew({"username": req.body.username, "password": req.body.password}, (err) => {
+	userDao.createNew({"username": req.body.username, "password": req.body.password}, (err) => {
 		if(err) {
 			console.log("Error while creating user:", err.message)
 		}

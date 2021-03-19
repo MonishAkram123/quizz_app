@@ -1,7 +1,7 @@
 <!-- TODO: Apply CSS to the form and whole document to make it look more attactive Render contents send by server and display here-->
 <!DOCTYPE html>
 <HEAD>
-	<Title>Quiz Home</Title>
+	<Title>Result page</Title>
 	<link href = "css/style.css" rel="stylesheet" type="text/css">
 </HEAD>
 
@@ -10,13 +10,6 @@
 		<button type="submit">Logout</button>
 	</form>
 
-	<!-- Add subjects -->
-	<div>
-	Choose subject
-	<ol>
-		  <li><a href="quiz/physics/"> Physics</a></li>
-		  <li><a href="quiz/chemistry"> Chemistry</a></li>
-		  <li><a href="quiz/maths"> Maths</a></li>
-	</ol>
-	</div>
+	Your score is: {{score}}<br>
+	<a href="/quiz"> Give a new test</a>
 </body>
