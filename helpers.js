@@ -1,3 +1,20 @@
+const mysql = require('mysql')
+const appConfig = require('./config.json')
+
+var getNewConnetion = () => {
+	const connection = mysql.createConnection({
+		host     : appConfig.db_host,
+		user     : appConfig.db_user,
+		password : appConfig.db_pass,
+		database : appConfig.db_name
+	})
+
+	connection.connect()
+	return connection
+}
+
+var closeConnection = (connection) => connection.end()
+
 // Middleware to check if session is set with a user
 var isAuthenticated = (req, res, next) => {
 	if(req.session && req.session.user)
@@ -18,4 +35,4 @@ var isUnAuthenticated = (req, res, next) => {
 	}
 }
 
-module.exports = {isAuthenticated, isUnAuthenticated}
+module.exports = {isAuthenticated, isUnAuthenticated, getNewConnetion, closeConnection}

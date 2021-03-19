@@ -1,0 +1,7 @@
+CREATE DATABASE IF NOT EXISTS quiz;
+CREATE USER IF NOT EXISTS 'quiz_admin'@'localhost' IDENTIFIED BY 'admin_pass';
+GRANT ALL PRIVILEGES ON quiz.* TO 'quiz_admin'@'localhost';
+
+USE quiz;
+
+CREATE TABLE IF NOT EXISTS students(id SERIAL PRIMARY KEY, username VARCHAR(100) UNIQUE NOT NULL, password VARCHAR(100) NOT NULL);

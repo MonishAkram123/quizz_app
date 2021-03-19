@@ -1,14 +1,18 @@
 const appConfig = require('./config.json')
+const bodyParser = require("body-parser");
 const express = require('express')
-const quizRouter = require('./routes/quiz.js')
+const hbs = require('hbs');
+const session = require('express-session')
+
+const user_dao = require('./dao/user.js')
 const isAuthenticated = require('./helpers.js').isAuthenticated
 const isUnAuthenticated = require('./helpers.js').isUnAuthenticated
-const session = require('express-session')
-const hbs = require('hbs');
+const quizRouter = require('./routes/quiz.js')
 
 var app = express()
 
 app.use(express.static(__dirname +'/public/'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // To handle session
 app.use(session({
@@ -24,19 +28,38 @@ app.use("/quiz", isAuthenticated, quizRouter)
 app.set('view engine', 'hbs')
 
 // Load the login page where users can login or register
-app.get("/login", isUnAuthenticated, (req, res) => {
-	res.render('login_page')
-})
+app.get("/login", isUnAuthenticated, (req, res) => {res.render('login_page')})
 
 // Post call to log user in
 app.post('/login', isUnAuthenticated, (req, res) => {
 	// TODO: remove with actual code that can log a user in and set cookie with user data
-	req.session.user = {"name": "404NotFound"}
-	// After login, redirect to quiz home page.
-	res.redirect("/quiz")
+	let user = user_dao.findOne(req.body.username, req.body.password, (err, result) => {
+		if(err) {
+			console.log(`Error while login: ${err}`)
+			res.redirect("/login")
+		} else {
+			console.log("session started with: ", result)
+			req.session.user = result
+			// After login, redirect to quiz home page.
+			res.redirect("/quiz")
+		}
+	})
 })
 
-app.post("/logout", (req, res) => {
+app.get("/register", isUnAuthenticated, (req, res) => {res.render('register_page')})
+
+app.post("/register", isUnAuthenticated, (req, res) => {
+	user_dao.createNew({"username": req.body.username, "password": req.body.password}, (err) => {
+		if(err) {
+			console.log("Error while creating user:", err.message)
+		}
+
+		res.redirect("/login")
+	})
+})
+
+
+app.post("/logout", isAuthenticated, (req, res) => {
 	req.session.destroy((err) => {
 		if(err)
 			console.log(`Error while destroying session: ${err}`)
