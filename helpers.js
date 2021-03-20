@@ -40,7 +40,6 @@ var calculateScoreForTest = (tests, response) => {
 	totalQuestions = test.questions.length
 	correctAnswers = 0
 	test.questions.map(question => {
-		console.log("Comparing: ", response[question.id], question)
 		if(response[question.id] === question.answer)
 			correctAnswers++
 	})
