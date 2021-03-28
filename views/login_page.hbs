@@ -1,15 +1,52 @@
-<!-- TODO: Apply CSS to the form and whole document to make it look more attactive -->
 <!DOCTYPE html>
-<HEAD>
+<html>
+<head>
 	<Title> Login page </Title>
 	<link href = "css/style.css" rel="stylesheet" type="text/css">
-</HEAD>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+	<script type='text/javascript'>
+		const toggleForm = () => {
+		  const container = document.querySelector('.container');
+		  container.classList.toggle('active');
+		};
+	</script>
+</head>
 
 <body>
-	<form action="/login" method="POST" class="login-form">
-		<input type="text" name="username" placeholder="Enter username" required="true" /> <br>
-		<input type="text" name="password" placeholder="possword" required="true" />
-		<button type="submit"> Login </button>
-	</form>
-	<a href="/register" > New user? Register Here</a>
+  <section>
+    <div class="container">
+      <div class="user signinBx">
+        <div class="imgBx"><img src="https://raw.githubusercontent.com/WoojinFive/CSS_Playground/master/Responsive%20Login%20and%20Registration%20Form/img1.jpg" alt="" /></div>
+        <div class="formBx">
+          <form action="/login" method="POST">
+            <h2>Sign In</h2>
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="submit" value="Login" />
+            <p class="signup">
+              Don't have an account ?
+              <a href="#" onclick="toggleForm();">Sign Up.</a>
+            </p>
+          </form>
+        </div>
+      </div>
+      <div class="user signupBx">
+        <div class="formBx">
+          <form action="/register" method="POST" class="register-form">
+            <h2>Create an account</h2>
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Create Password" />
+            <input type="submit" name="" value="Sign Up" />
+            <p class="signup">
+              Already have an account ?
+              <a href="#" onclick="toggleForm();">Sign in.</a>
+            </p>
+          </form>
+        </div>
+        <div class="imgBx"><img src="https://raw.githubusercontent.com/WoojinFive/CSS_Playground/master/Responsive%20Login%20and%20Registration%20Form/img2.jpg" alt="" /></div>
+      </div>
+    </div>
+  </section>
+  <script type='text/javascript' src='jsquiz.js'></script>
 </body>
+</html>

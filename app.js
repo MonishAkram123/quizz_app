@@ -46,7 +46,6 @@ app.post('/login', isUnAuthenticated, (req, res) => {
 	})
 })
 
-app.get("/register", isUnAuthenticated, (req, res) => {res.render('register_page')})
 
 app.post("/register", isUnAuthenticated, (req, res) => {
 	userDao.createNew({"username": req.body.username, "password": req.body.password}, (err) => {
