@@ -1,29 +1,34 @@
-<!-- TODO: Apply CSS to the form and whole document to make it look more attactive Render contents send by server and display here-->
 <!DOCTYPE html>
-<HEAD>
-	<Title>Questions</Title>
-	<link href = "css/style.css" rel="stylesheet" type="text/css">
-</HEAD>
+<html>
+<head>
+	<Title>Test Page</Title>
+	<link href = "/css/style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+</head>
 
 <body>
+
 	<form action="/logout" method="POST">
-		<button type="submit">Logout</button>
+		<button type="submit" class="custom-btn-class logout">Logout</button>
 	</form>
-	<form action="/quiz/submit" method="POST">
-	<input type="hidden" name="test_id" value="{{data.test_id}}" />
-	<ol>
-		{{#each data.questions}}
-		<li>{{question}}</li>
-		<ol type="a">
-			{{#each options}}
-				<li>
-				<input type="radio" name="{{../id}}" value="{{this}}" required="true">
-				<label for="{{this}}">{{this}}</label>
-				</li>
+	<div class="common-container">
+		<form action="/quiz/submit" method="POST">
+		<input type="hidden" name="test_id" value="{{data.test_id}}" />
+		<ol>
+			{{#each data.questions}}
+			<h3 style="padding-top: 4px;"><li>{{question}}</li></h3>
+			<ol type="a" style="padding-left:20px; padding-top: 4px;">
+				{{#each options}}
+					<li>
+					<input type="radio" name="{{../id}}" value="{{this}}" required="true">
+					<label for="{{this}}">{{this}}</label>
+					</li>
+				{{/each}}
+			</ol>
 			{{/each}}
 		</ol>
-		{{/each}}
-	</ol>
-	<button type="submit">Submit test</button>
-	</form>
+		<button type="submit" class="custom-btn-class submit-test">Submit test</button>
+		</form>
+	</div>
 </body>
+</html>

@@ -1,22 +1,24 @@
-<!-- TODO: Apply CSS to the form and whole document to make it look more attactive Render contents send by server and display here-->
 <!DOCTYPE html>
-<HEAD>
+<html>
+<head>
 	<Title>Quiz Home</Title>
-	<link href = "css/style.css" rel="stylesheet" type="text/css">
-</HEAD>
+	<link href = "/css/style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+</head>
 
 <body>
-	<form action="/logout" method="POST">
-		<button type="submit">Logout</button>
-	</form>
 
-	<!-- Add subjects -->
-	<div>
-	Choose subject
-	<ol>
-		  <li><a href="quiz/physics/"> Physics</a></li>
-		  <li><a href="quiz/chemistry"> Chemistry</a></li>
-		  <li><a href="quiz/maths"> Maths</a></li>
-	</ol>
+	<form action="/logout" method="POST">
+		<button type="submit" class="custom-btn-class logout">Logout</button>
+	</form>
+	<div class="common-container">
+		<h2> Choose subject</h2>
+		<ol class="subject-list">
+			  <li><a href="quiz/physics/"> Physics</a></li>
+			  <li><a href="quiz/chemistry"> Chemistry</a></li>
+			  <li><a href="quiz/maths"> Maths</a></li>
+		</ol>
 	</div>
+
 </body>
+</html>

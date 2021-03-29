@@ -1,15 +1,18 @@
-<!-- TODO: Apply CSS to the form and whole document to make it look more attactive Render contents send by server and display here-->
 <!DOCTYPE html>
-<HEAD>
+<html>
+<head>
 	<Title>Result page</Title>
-	<link href = "css/style.css" rel="stylesheet" type="text/css">
-</HEAD>
+	<link href = "/css/style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+</head>
 
 <body>
 	<form action="/logout" method="POST">
-		<button type="submit">Logout</button>
+		<button type="submit" class="custom-btn-class logout">Logout</button>
 	</form>
-
-	Your score is: {{score}}<br>
-	<a href="/quiz"> Give a new test</a>
+	<div class="common-container">
+		<h1>Your score is: {{score}}</h1>
+		<a href="/quiz"> Give a new test</a>
+	</div>
 </body>
+</html>
